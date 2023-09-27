@@ -1,34 +1,19 @@
-import Link from 'next/link';
-import styles from './homepage.module.css';
+
+import styles from './homepage.module.css'
+import Featured from '@/components/featured/Featured';
+import CategoryList from '@/components/categoryList/CategoryList';
+import CardList from '@/components/cardList/CardList';
+import Menu from '@/components/menu/Menu';
 
 export default function Home() {
   return (
-    <div>
-      <Link href="/">
-        <h1>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-          ipsum aperiam placeat natus vitae pariatur veniam quae quis, mollitia
-          iste adipisci corporis recusandae delectus nihil eius ducimus tempore
-          magni quod!
-        </h1>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam minus
-        amet distinctio ducimus! Veritatis ducimus id nam adipisci commodi
-        consequuntur rem corrupti blanditiis quo numquam, earum ullam provident
-        voluptas officia? Lorem, ipsum dolor sit amet consectetur adipisicing
-        elit. Aperiam minus amet distinctio ducimus! Veritatis ducimus id nam
-        adipisci commodi consequuntur rem corrupti blanditiis quo numquam, earum
-        ullam provident voluptas officia? Lorem, ipsum dolor sit amet
-        consectetur adipisicing elit. Aperiam minus amet distinctio ducimus!
-        Veritatis ducimus id nam adipisci commodi consequuntur rem corrupti
-        blanditiis quo numquam, earum ullam provident voluptas officia? Lorem,
-        ipsum dolor sit amet consectetur adipisicing elit. Aperiam minus amet
-        distinctio ducimus! Veritatis ducimus id nam adipisci commodi
-        consequuntur rem corrupti blanditiis quo numquam, earum ullam provident
-        voluptas officia? Lorem, ipsum dolor sit amet consectetur adipisicing
-        elit. Aperiam minus amet distinctio ducimus! Veritatis ducimus id nam
-        adipisci commodi consequuntur rem corrupti blanditiis quo numquam, earum
-        ullam provident voluptas officia?
-      </Link>
+    <div className={styles.container}>
+      <Featured />
+      <CategoryList />
+      <div className={styles.content}>
+        <CardList />
+        <Menu />
+      </div>
     </div>
   );
 }
