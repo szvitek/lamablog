@@ -2,35 +2,41 @@ import Link from 'next/link';
 import styles from './categoryList.module.css';
 import Image from 'next/image';
 
-const categories = [
-  { name: 'style', bg: '#57c4ff31' },
-  { name: 'fashion', bg: '#da85c731' },
-  { name: 'food', bg: '#7fb88133' },
-  { name: 'travel', bg: '#ff795736' },
-  { name: 'culture', bg: '#ffb04f45' },
-  { name: 'coding', bg: '#5e4fff31' },
-];
+const getData = async () => {
+  const res = await fetch('http://localhost:3000/api/categories', {
+    cache: 'no-store',
+  });
 
-const CategoryList = () => {
+  if (!res.ok) {
+    throw new Error('Failed');
+  }
+
+  return res.json();
+};
+
+const CategoryList = async () => {
+  const data = await getData();
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Popular Categories</h1>
       <div className={styles.categories}>
-        {categories.map((category) => (
+        {data.map((category) => (
           <Link
             href={`/blog?cat=${category}`}
-            className={styles.category}
-            key={category.name}
+            className={`${styles.category} ${styles[category.slug]}`}
+            key={category._id}
             style={{ backgroundColor: category.bg }}
           >
-            <Image
-              src={`/${category.name}.png`}
-              alt=""
-              width={32}
-              height={32}
-              className={styles.image}
-            />
-            {category.name}
+            {category.img && (
+              <Image
+                src={category.img}
+                alt=""
+                width={32}
+                height={32}
+                className={styles.image}
+              />
+            )}
+            {category.title}
           </Link>
         ))}
       </div>
