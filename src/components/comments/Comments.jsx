@@ -30,15 +30,15 @@ const Comments = ({ postSlug }) => {
   const [desc, setDesc] = useState('');
 
   const handleSubmit = async () => {
-    await fetch("http://localhost:3000/api/comments", {
+    await fetch('http://localhost:3000/api/comments', {
       method: 'POST',
       body: JSON.stringify({
         desc,
-        postSlug
-      })
+        postSlug,
+      }),
     });
-    mutate()
-  }
+    mutate();
+  };
 
   return (
     <div className={styles.container}>
@@ -61,7 +61,7 @@ const Comments = ({ postSlug }) => {
         {isLoading
           ? 'loading...'
           : data?.map((comment) => (
-              <div className={styles.comment} key={comment._id}>
+              <div className={styles.comment} key={comment.id}>
                 <div className={styles.user}>
                   {comment?.user?.image && (
                     <Image
